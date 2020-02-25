@@ -1,0 +1,11 @@
+{
+  name: hike.name,
+  description: hike.description,
+  user_id: hike.user_id,
+  difficulty_level: hike.difficulty_level,
+  start_lat: hike.start_lat,
+  start_long: hike.start_long,
+  end_lat: hike.end_lat,
+  end_long: hike.end_long,
+  distance: hike.distance
+}

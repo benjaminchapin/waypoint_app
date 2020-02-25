@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_210521) do
+ActiveRecord::Schema.define(version: 2020_02_25_195017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(version: 2020_02_21_210521) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "start_lat"
+    t.float "start_long"
+    t.float "end_lat"
+    t.float "end_long"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,6 +37,8 @@ ActiveRecord::Schema.define(version: 2020_02_21_210521) do
     t.string "skill_level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "waypoints", force: :cascade do |t|
@@ -42,6 +48,8 @@ ActiveRecord::Schema.define(version: 2020_02_21_210521) do
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
 end

@@ -1,0 +1,8 @@
+{
+  name: waypoint.name,
+  image_url: waypoint.image_url,
+  hike_id: waypoint.hike_id,
+  user_id: waypoint.user_id,
+  latitude: waypoint.latitude,
+  longitude: waypoint.longitude
+}
