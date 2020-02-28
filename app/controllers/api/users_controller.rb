@@ -19,7 +19,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(id: params["id"])
+    @user = User.find(params[:id])
     render 'show.json.jb'
   end
 
@@ -35,11 +35,12 @@ class Api::UsersController < ApplicationController
     @user.first_name = params[:first_name] || @user.first_name
     @user.last_name = params[:last_name] || @user.last_name
     @user.skill_level = params[:skill_level] || @user.skill_level
+    render 'show.json.jb'
   end
 
-  # def destroy
-  #   @user = User.find(params[:id])
-  #   @user.destroy
-  #   render json: {message: "Account successfully deleted!"}
-  # end
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    render json: {message: "Account successfully deleted!"}
+  end
 end

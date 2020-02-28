@@ -1,0 +1,6 @@
+@waypoints.map do |waypoint|
+  json = render partial: "waypoint.json.jb", locals: { waypoint: waypoint }
+  json[:user] = waypoint.user.first_name
+  # json[:hike] = waypoint.hike.name
+  json
+end

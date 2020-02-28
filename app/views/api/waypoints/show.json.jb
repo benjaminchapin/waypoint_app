@@ -1,0 +1,1 @@
+render partial: "waypoint.json.jb", locals: { waypoint: @waypoint}
