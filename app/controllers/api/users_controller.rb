@@ -1,4 +1,5 @@
 class Api::UsersController < ApplicationController
+  
   def create
     coordinates = Geocoder.coordinates(params[:address])
     @user = User.new(
@@ -24,18 +25,20 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
-    if params[:address]
-      coordinates = Geocoder.coordinates(params[:address])
-      @user.latitude = coordinates[0]
-      @user.longitude = coordinates[1]
+    @user = User.find(params[:id])
+    if @user == current_user
+      if params[:address]
+        coordinates = Geocoder.coordinates(params[:address])
+        @user.latitude = coordinates[0]
+        @user.longitude = coordinates[1]
+      end
+      @user.email = params[:email] || @user.email
+      @user.password = params[:password] || @user.password
+      @user.first_name = params[:first_name] || @user.first_name
+      @user.last_name = params[:last_name] || @user.last_name
+      @user.skill_level = params[:skill_level] || @user.skill_level
+      render 'show.json.jb'
     end
-    @user.email = params[:email] || @user.email
-    @user.password = params[:password] || @user.password
-    @user.first_name = params[:first_name] || @user.first_name
-    @user.last_name = params[:last_name] || @user.last_name
-    @user.skill_level = params[:skill_level] || @user.skill_level
-    render 'show.json.jb'
   end
 
   def destroy

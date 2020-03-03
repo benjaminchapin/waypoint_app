@@ -1,5 +1,8 @@
 class Api::WaypointsController < ApplicationController
 
+  before_action :authenticate_user, except: [:show, :index]
+
+
   def create
     coordinates = Geocoder.coordinates(params[:address])
     @waypoint = Waypoint.new(
@@ -17,34 +20,24 @@ class Api::WaypointsController < ApplicationController
     end
   end
 
-  def update
-    @waypoint = Waypoint.find(params[:id])
-    if params[:address]
-      coordinates = Geocoder.coordinates(params[:address])
-      @waypoint.latitude = coordinates[0]
-      @waypoint.longitude = coordinates[1]
-    @waypoint.name = params[:name] || @waypoint.name
-    @waypoint.image_url = params[:image_url] || @waypoint.image_url
-    render 'show.json.jb'
-    else
-      render json: { errors: @waypoint.errors.full_messages }, status: :bad_request
-    end
-  end
-
   def show
     @waypoint = Waypoint.find(params[:id])
     render 'show.json.jb'
   end
 
-  def index #not functional
+  def index
     @waypoints = Waypoint.all
     render 'index.json.jb'
   end
 
   def destroy
     @waypoint = Waypoint.find(params[:id])
-    @waypoint.destroy
-    render json: {message: "Waypoint successfully deleted!"}
+    if current_user.id == @waypoint.user_id
+      @waypoint.destroy
+      render json: {message: "Waypoint successfully deleted!"}
+    else
+      render json: { message: "Waypoint deletion unsuccessful." }
+    end
   end
 
 end

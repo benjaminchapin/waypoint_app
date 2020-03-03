@@ -1,5 +1,6 @@
 {
   name: hike.name,
+  created_by: hike.user.first_name,
   description: hike.description,
   user_id: hike.user_id,
   difficulty_level: hike.difficulty_level,
