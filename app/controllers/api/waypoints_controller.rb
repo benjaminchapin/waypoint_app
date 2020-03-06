@@ -10,6 +10,7 @@ class Api::WaypointsController < ApplicationController
       hike_id: params[:hike_id],
       name: params[:name],
       image_url: params[:image_url],
+      description: params[:description],
       latitude: coordinates[0],
       longitude: coordinates[1]
     )
@@ -28,6 +29,21 @@ class Api::WaypointsController < ApplicationController
   def index
     @waypoints = Waypoint.all
     render 'index.json.jb'
+  end
+
+  def update
+    @waypoint = Waypoint.find(params[:id])
+    if params[:address]
+      coordinates = Geocoder.coordinates(params[:address])
+      @waypoint.latitude = coordinates[0]
+      @waypoint.longitude = coordinates[1]
+    @waypoint.name = params[:name] || @waypoint.name
+    @waypoint.image_url = params[:image_url] || @waypoint.image_url
+    @waypoint.description = params[:description] || @waypoint.description
+    render 'show.json.jb'
+    else
+      render json: { errors: @waypoint.errors.full_messages }, status: :bad_request
+    end
   end
 
   def destroy

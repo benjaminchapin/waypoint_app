@@ -32,6 +32,24 @@ class Api::HikesController < ApplicationController
     render "index.json.jb"
   end
 
+  def update
+    @hike = Hike.find(params[:id])
+    if params[:start_address]
+      start_coordinates = Geocoder.coordinates(params[:start_address])
+      @hike.start_lat = start_coordinates[0]
+      @hike.start_long = start_coordinates[1]
+    end
+    if params[:end_address]
+      end_coordinates = Geocoder.coordinates(params[:end_address])
+      @hike.end_lat = end_coordinates[0]
+      @hike.end_long = end_coordinates[1]
+    end
+    @hike.name = params[:name] || @hike.name
+    @hike.description = params[:description] || @hike.description
+    @hike.difficulty_level = params[:difficulty_level] || @hike.difficulty_level
+    render 'show.json.jb'
+  end
+
   def destroy
     @hike = Hike.find(params[:id])
     @hike.destroy

@@ -13,12 +13,14 @@ Rails.application.routes.draw do
 
     get "/hikes/:id" => "hikes#show"
     get "/hikes" => "hikes#index"
+    patch "/hikes/:id" => "hikes#update"
     post "/hikes/" => "hikes#create"
     delete "/hikes/:id" => "hikes#destroy"
 
     get "/waypoints/:id" => "waypoints#show"
     get "/waypoints" => "waypoints#index"
     post "/waypoints" => "waypoints#create"
+    patch "/waypoints/:id" => "waypoints#update"
     delete "/waypoints/:id" => "waypoints#destroy"
 
   end
