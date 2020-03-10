@@ -47,13 +47,21 @@ class Api::HikesController < ApplicationController
     @hike.name = params[:name] || @hike.name
     @hike.description = params[:description] || @hike.description
     @hike.difficulty_level = params[:difficulty_level] || @hike.difficulty_level
-    render 'show.json.jb'
+    if @hike.save
+      render 'show.json.jb'
+    else
+      render json: { errors: @hike.errors.full_messages }, status: :bad_request
+    end
   end
 
   def destroy
     @hike = Hike.find(params[:id])
-    @hike.destroy
-    render json: {message: "Hike successfully deleted!"}
+    if current_user.id == @hike.user_id
+      @hike.destroy
+      render json: {message: "Hike successfully deleted!"}
+    else
+      render json: { message: "Hike deletion unsuccessful." }
+    end
   end
 
 end

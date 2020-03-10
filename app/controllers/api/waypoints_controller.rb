@@ -5,6 +5,7 @@ class Api::WaypointsController < ApplicationController
 
   def create
     coordinates = Geocoder.coordinates(params[:address])
+    p "==============#{coordinates}"
     @waypoint = Waypoint.new(
       user_id: current_user.id,
       hike_id: params[:hike_id],
@@ -27,7 +28,7 @@ class Api::WaypointsController < ApplicationController
   end
 
   def index
-    @waypoints = Waypoint.all
+    @waypoints = Waypoint.current_user.all
     render 'index.json.jb'
   end
 
@@ -37,10 +38,12 @@ class Api::WaypointsController < ApplicationController
       coordinates = Geocoder.coordinates(params[:address])
       @waypoint.latitude = coordinates[0]
       @waypoint.longitude = coordinates[1]
+    end
     @waypoint.name = params[:name] || @waypoint.name
     @waypoint.image_url = params[:image_url] || @waypoint.image_url
     @waypoint.description = params[:description] || @waypoint.description
-    render 'show.json.jb'
+    if @waypoint.save
+      render 'show.json.jb'
     else
       render json: { errors: @waypoint.errors.full_messages }, status: :bad_request
     end

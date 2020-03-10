@@ -8,6 +8,5 @@
   start_long: hike.start_long,
   end_lat: hike.end_lat,
   end_long: hike.end_long,
-  distance: hike.distance,
-  waypoints: hike.waypoints
+  distance: hike.distance
 }

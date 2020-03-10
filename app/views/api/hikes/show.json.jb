@@ -1,1 +1,7 @@
-render partial: "hike.json.jb", locals: { hike: @hike}
+hike = render partial: "hike.json.jb", locals: { hike: @hike}
+
+hike[:waypoints] = @hike.waypoints.map do |waypoint|
+  render partial: "api/waypoints/waypoint.json.jb", locals: {waypoint: waypoint}
+end
+
+hike
