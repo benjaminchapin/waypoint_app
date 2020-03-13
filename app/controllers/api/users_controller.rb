@@ -1,4 +1,6 @@
 class Api::UsersController < ApplicationController
+
+  before_action :authenticate_user, only: [:update, :destroy]
   
   def create
     coordinates = Geocoder.coordinates(params[:address])
@@ -24,24 +26,30 @@ class Api::UsersController < ApplicationController
     render 'show.json.jb'
   end
 
+  def index
+    @users = User.all
+    render 'index.json.jb'
+  end
+
   def update
-    @user = User.find(params[:id])
-    if @user == current_user
-      if params[:address]
-        coordinates = Geocoder.coordinates(params[:address])
-        @user.latitude = coordinates[0]
-        @user.longitude = coordinates[1]
-      end
-      @user.email = params[:email] || @user.email
-      # @user.password = params[:password] || @user.password
-      @user.first_name = params[:first_name] || @user.first_name
-      @user.last_name = params[:last_name] || @user.last_name
-      @user.skill_level = params[:skill_level] || @user.skill_level
-      if @user.save
-        render 'show.json.jb'
-      else
-        render json: { errors: @user.errors.full_messages }, status: :bad_request
-      end
+    @user = current_user
+    if params[:address]
+      coordinates = Geocoder.coordinates(params[:address])
+      @user.latitude = coordinates[0]
+      @user.longitude = coordinates[1]
+    end
+    if params[:password]
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+    end
+    @user.first_name = params[:first_name] || @user.first_name
+    @user.last_name = params[:last_name] || @user.last_name
+    @user.skill_level = params[:skill_level] || @user.skill_level
+    @user.email = params[:email] || @user.email
+    if @user.save
+      render 'show.json.jb'
+    else
+      render json: { errors: @user.errors.full_messages }, status: :bad_request
     end
   end
 
