@@ -22,12 +22,18 @@
 
 # Hike.create(name: "Golden Gate Park Hike ", description: "Hike through Golden Gate Park", user_id: 2, difficulty_level: "intermediate", start_lat: 37.775395,  start_long: -122.456325, end_lat: 37.763842, end_long: -122.509406)
 
-Waypoint.create(name: "Dutch Windmill", image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/GGParkNorthWindmill2.jpg/1200px-GGParkNorthWindmill2.jpg", description: "Historic windmill, 1 of 2 in the Golden Gate Park, constructed in 1903 & restored in 1981.", latitude: 37.770771, longitude: -122.509362, hike_id: 12, user_id: 2)
+# Waypoint.create(name: "Dutch Windmill", image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/GGParkNorthWindmill2.jpg/1200px-GGParkNorthWindmill2.jpg", description: "Historic windmill, 1 of 2 in the Golden Gate Park, constructed in 1903 & restored in 1981.", latitude: 37.770771, longitude: -122.509362, hike_id: 12, user_id: 2)
 
-Waypoint.create(name: "Stow Lake Boathouse", image_url: "https://1pv46r6ky46uvoy8eq27h1ec-wpengine.netdna-ssl.com/wp-content/uploads/2014/03/Pagoda.jpg", description: "the center for boat rentals", latitude: 37.771638, longitude: -122.475818, hike_id: 12, user_id: 2)
+# Waypoint.create(name: "Stow Lake Boathouse", image_url: "https://1pv46r6ky46uvoy8eq27h1ec-wpengine.netdna-ssl.com/wp-content/uploads/2014/03/Pagoda.jpg", description: "the center for boat rentals", latitude: 37.771638, longitude: -122.475818, hike_id: 12, user_id: 2)
 
-Waypoint.create(name: "Old Speedway Meadow Picnic Area", image_url: "https://sfrecpark.org/ImageRepository/Document?documentID=4363", description: "Bring your own blanket or chairs", latitude: 37.766641, longitude: -122.498084, hike_id: 12, user_id: 2)
+# Waypoint.create(name: "Old Speedway Meadow Picnic Area", image_url: "https://sfrecpark.org/ImageRepository/Document?documentID=4363", description: "Bring your own blanket or chairs", latitude: 37.766641, longitude: -122.498084, hike_id: 12, user_id: 2)
 
-Waypoint.create(name: "Shakespeare Garden", image_url: "https://goldengatepark.com/wp-content/uploads/2011/02/Shakespeare-Garden-San-Francisco.jpg", description: "illed with flowers and plants typically found in the works of William Shakespeare", latitude: 37.769126, longitude: -122.466331, hike_id: 12, user_id: 2)
+# Waypoint.create(name: "Shakespeare Garden", image_url: "https://goldengatepark.com/wp-content/uploads/2011/02/Shakespeare-Garden-San-Francisco.jpg", description: "illed with flowers and plants typically found in the works of William Shakespeare", latitude: 37.769126, longitude: -122.466331, hike_id: 12, user_id: 2)
 
-# Hike.create(name: "Forest Hike", description: "Scenic hike through a forest", user_id: 2, difficulty_level: "intermediate", start_lat: 41.526130,  start_long: -88.194913, end_lat: 37.763842, end_long: -122.509406)
+# Hike.create(name: "Central Park Hike", description: "Long hike through Central Park in NYC", user_id: 2, difficulty_level: "intermediate", start_lat: 40.797622,  start_long: -73.949740, end_lat: 40.765996, end_long: -73.974243)
+
+Waypoint.create(name: "Central Park Carousel", image_url: "https://media-cdn.tripadvisor.com/media/photo-s/0c/5a/9b/20/the-carousel.jpg", description: "Colorful carousel in the park", latitude: 40.7699, longitude: -73.968285, hike_id: 13, user_id: 2)
+
+Waypoint.create(name: "Bethesda Terrace", image_url: "https://steemitimages.com/0x0/https://files.steempeak.com/file/steempeak/tattoodjay/ZteiEHwA-120Bethesda20Terrace-2.jpg", description: "Bi-level, lakeside terrace with a large fountain & carvings representing the seasons & times of day.", latitude: 40.891079, longitude: -73.318192, hike_id: 13, user_id: 2)
+
+Waypoint.create(name: "The Metropolitan Museum of Art", image_url: "https://media.tacdn.com/media/attractions-splice-spp-674x446/07/75/a6/9e.jpg", description: "A grand setting for one of the world's greatest collections of art, from ancient to contemporary.", latitude: 40.7794, longitude: 73.9632, hike_id: 13, user_id: 2)
