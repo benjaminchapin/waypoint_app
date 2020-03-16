@@ -38,7 +38,7 @@ class Api::UsersController < ApplicationController
       @user.latitude = coordinates[0]
       @user.longitude = coordinates[1]
     end
-    if params[:password]
+    if params[:password].length > 0
       @user.password = params[:password]
       @user.password_confirmation = params[:password_confirmation]
     end
@@ -55,7 +55,7 @@ class Api::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if current_user.id == @user.user_id
+    if current_user.id == @user.id
       @user.destroy
       render json: {message: "Your account has been successfully deleted!"}
     else

@@ -1,5 +1,4 @@
 @hikes.map do |hike|
   json = render partial: "hike.json.jb", locals: { hike: hike }
-  json[:user] = hike.user.first_name
   json
 end
