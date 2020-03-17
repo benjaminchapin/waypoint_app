@@ -38,7 +38,7 @@ class Api::UsersController < ApplicationController
       @user.latitude = coordinates[0]
       @user.longitude = coordinates[1]
     end
-    if params[:password].length > 0
+    if params[:password] && params[:password].length > 0
       @user.password = params[:password]
       @user.password_confirmation = params[:password_confirmation]
     end
