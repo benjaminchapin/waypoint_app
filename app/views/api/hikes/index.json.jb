@@ -1,4 +1,7 @@
 @hikes.map do |hike|
   json = render partial: "hike.json.jb", locals: { hike: hike }
+  if hike.waypoints.any?
+    json[:image_url] = hike.waypoints.first.image_url
+  end
   json
 end
